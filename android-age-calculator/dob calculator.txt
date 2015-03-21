@@ -1,0 +1,84 @@
+function ResetForm(obj) {
+  // Get the Date and set default
+  var the_date  = new Date();
+  var the_month = the_date.getMonth() + 1;
+  var the_day   = the_date.getDate();
+  var the_year  = the_date.getFullYear();
+  var ToDate    = the_month + "/" + the_day + "/" + the_year;
+
+  obj.DoB.value = "";
+  obj.DoC.value = ToDate;
+  obj.AgeYears.value = " ";
+  obj.AgeRmdr.value = " ";
+  obj.AgeMonth.value = " ";
+  obj.AgeWeeks.value = " ";
+  obj.AgeDays.value = " ";
+}
+
+function CalcAge(obj) {
+  var DoB    = Date.parse(obj.DoB.value);
+  var DoC    = Date.parse(obj.DoC.value);
+  var AOkay  = true;
+
+  // Check dates for validity
+  if ((DoB==null)||(isNaN(DoB))) {
+    alert("Date of Birth is invalid.");
+    AOkay = false;
+  }
+  if ((DoC==null)||(isNaN(DoC))) {
+    alert("Specified Date is invalid.");
+    AOkay = false;
+  }
+
+  var ToDate   = new Date();
+  var ToDateYr = ToDate.getFullYear();
+  var DateofB  = new Date(DoB);
+  var DoBYr    = DateofB.getFullYear();
+  var DoBMo    = DateofB.getMonth();
+  var DoBDy    = DateofB.getDate();
+
+  obj.DoB.value = (DoBMo+1) +"/"+ DoBDy +"/"+ DoBYr;
+
+  var DateofC  = new Date(DoC);
+  var DoCYr    = DateofC.getFullYear();
+  var DoCMo    = DateofC.getMonth();
+  var DoCDy    = DateofC.getDate();
+
+  obj.DoC.value = " "+ (DoCMo+1) +"/"+ DoCDy +"/"+ DoCYr;
+
+  if (DoB > DoC) {
+    alert("The Date of Birth is after the specified date.");
+    AOkay = false;
+  }
+
+  if (DoC > ToDate) {
+    alert("The specified date is in the future.\n           Continuing calculation.");
+  }
+
+  if (AOkay) {
+    var AgeDays  = 0;
+    var AgeWeeks = 0;
+    var AgeMonth = 0;
+    var AgeYears = 0;
+    var AgeRmdr  = 0;
+
+    mSecDiff   = DoC - DoB;
+    AgeDays  = mSecDiff / 86400000;
+    AgeWeeks = AgeDays / 7;
+    AgeMonth = AgeDays / 30.4375;
+    AgeYears = AgeDays / 365.24;    
+    AgeYears = Math.floor(AgeYears);
+    AgeRmdr  = (AgeDays - AgeYears * 365.24) / 30.4375;
+
+    AgeDays  = Math.round(AgeDays * 10) / 10;
+    AgeWeeks = Math.round(AgeWeeks * 10) / 10;
+    AgeMonth = Math.round(AgeMonth * 10) / 10;
+    AgeRmdr  = Math.round(AgeRmdr * 10) / 10;
+
+    obj.AgeDays.value = AgeDays;
+    obj.AgeWeeks.value = AgeWeeks;
+    obj.AgeMonth.value = AgeMonth;
+    obj.AgeYears.value = AgeYears;
+    obj.AgeRmdr.value = AgeRmdr;
+  }
+}

@@ -1,0 +1,34 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/cake"
+        android:scaleType="centerCrop" />
+
+    <Button
+        android:id="@+id/button_select_birthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Birthdate"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/textview_age_results"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Use this calculator to find out exactly how old someone is!"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</TableLayout>
